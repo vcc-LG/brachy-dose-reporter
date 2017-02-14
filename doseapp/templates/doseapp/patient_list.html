@@ -1,4 +1,6 @@
-<html>
-    <p>Hi there!</p>
-    <p>It works!</p>
-</html>
+<h1>List of patients in system</h1>
+{% for x in patients %}
+<p>
+  {{x}}
+</p>
+{% endfor %}
