@@ -1,17 +1,21 @@
 <html>
-    <head>
-        <title>Brachytherapy dose reporter</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    </head>
+
+<head>
+    <title>Brachytherapy dose reporter</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+</head>
+
 <body>
-<h1>List of patients in system</h1>
-{% for x in patients %}
-<p>
-  {{x}}
-</p>
-{% endfor %}
-<h1><a href="/">Home</a></h1>
+    <h1>List of patients in system</h1>
+    {% for patient in patients %}
+    <p>
+      <a href="{% url 'patient_detail' pk=patient.patient_id %}">{{ patient.patient_id }}</a>
+        {{ patient.patient_id }}
+    </p>
+    {% endfor %}
+    <h1><a href="/">Home</a></h1>
 </body>
+
 </html>

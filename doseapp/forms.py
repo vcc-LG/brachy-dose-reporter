@@ -8,4 +8,4 @@ class PatientForm(forms.ModelForm):
         model = Patient
         fields = ('patient_id',
         'first_name',
-        'last_name')
+        'last_name',)
