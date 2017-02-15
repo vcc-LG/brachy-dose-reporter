@@ -6,12 +6,15 @@
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     </head>
 <body>
-<h1>List of patients in system</h1>
-{% for x in patients %}
-<p>
-  {{x}}
-</p>
-{% endfor %}
-<h1><a href="/">Home</a></h1>
+  {% block content %}
+      <h1>New patient</h1>
+      <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">Save</button>
+      </form>
+  {% endblock %}
+  <h1><a href="/">Home</a></h1>
+
 </body>
+
 </html>
