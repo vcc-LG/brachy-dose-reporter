@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Patient, Fraction
-from .forms import PatientForm
+from .forms import PatientForm, FractionForm
 from django.shortcuts import redirect, render, get_object_or_404
 
 # Create your views here.
@@ -24,4 +24,16 @@ def patient_new(request):
 
 def patient_detail(request, pk):
     patient = get_object_or_404(Patient, pk=pk)
-    return render(request, 'doseapp/patient_detail.html', {'patient': patient})
+    fraction =  get_object_or_404(Fraction, patient=pk)
+    return render(request, 'doseapp/patient_detail.html', {'patient': patient, 'fraction':fraction})
+
+def fraction_new(request):
+    if request.method == "POST":
+        form = FractionForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('patient_list')
+    else:
+        form = FractionForm()
+    return render(request, 'doseapp/fraction_new.html', {'form': form})

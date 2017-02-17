@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Patient
+from .models import Patient, Fraction
 
 class PatientForm(forms.ModelForm):
 
@@ -9,3 +9,10 @@ class PatientForm(forms.ModelForm):
         fields = ('patient_id',
         'first_name',
         'last_name',)
+
+class FractionForm(forms.ModelForm):
+
+    class Meta:
+        model = Fraction
+        fields = ('fraction_number',
+        'D90',)
