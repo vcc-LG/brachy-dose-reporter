@@ -12,7 +12,6 @@
     {% for patient in patients %}
     <p>
       <a href="{% url 'patient_detail' pk=patient.patient_id %}">{{ patient.patient_id }}</a>
-        {{ patient.patient_id }}
     </p>
     {% endfor %}
     <h1><a href="/">Home</a></h1>
