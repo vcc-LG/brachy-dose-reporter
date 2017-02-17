@@ -1,6 +1,7 @@
 {% extends 'doseapp/base.html' %} {% block content %}
 <h1>New fraction for {{ patient_id }}</h1>
 <form method="POST" class="post-form">{% csrf_token %} {{ form.as_p }}
+  <input type="hidden" name="patid" value='"{{patient_id}}"' />
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 {% endblock %}
