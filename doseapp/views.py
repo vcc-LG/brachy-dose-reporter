@@ -55,3 +55,15 @@ def patient_edit(request, pk):
     else:
         form = PatientForm(instance=patient)
     return render(request, 'doseapp/patient_edit.html', {'form': form})
+
+def fraction_edit(request, pk, fraction_num):
+    fraction = get_object_or_404(Fraction, patient=pk, fraction_number=fraction_num)
+    if request.method == "POST":
+        form = FractionForm(request.POST, instance=fraction)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('patient_detail', pk=pk)
+    else:
+        form = FractionForm(instance=fraction)
+    return render(request, 'doseapp/fraction_edit.html', {'form': form})
