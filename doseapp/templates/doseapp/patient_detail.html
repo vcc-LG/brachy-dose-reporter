@@ -13,4 +13,10 @@
 </div>
 
 
-<a href="{% url 'fraction_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>   Add a new fraction</a> {% endblock %}
+<a href="{% url 'fraction_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>   Add a new fraction</a>
+<p>
+
+</p>
+<a class="btn btn-default" href="{% url 'patient_edit' pk=patient.patient_id %}"><span class="glyphicon glyphicon-pencil"></span>  Edit patient</a>
+
+{% endblock %}

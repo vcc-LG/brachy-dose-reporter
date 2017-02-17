@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Patient, Fraction
 from .forms import PatientForm, FractionForm
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views.generic.edit import UpdateView
 
 # Create your views here.
 def patient_list(request):
@@ -41,3 +42,16 @@ def fraction_new(request):
     else:
         form = FractionForm()
     return render(request, 'doseapp/fraction_new.html', {'form': form, 'patient_id':referrer_id})
+
+
+def patient_edit(request, pk):
+    patient = get_object_or_404(Patient, pk=pk)
+    if request.method == "POST":
+        form = PatientForm(request.POST, instance=patient)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('patient_detail', pk=post.pk)
+    else:
+        form = PatientForm(instance=patient)
+    return render(request, 'doseapp/patient_edit.html', {'form': form})
