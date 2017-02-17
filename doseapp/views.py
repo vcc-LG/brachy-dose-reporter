@@ -24,8 +24,10 @@ def patient_new(request):
 
 def patient_detail(request, pk):
     patient = get_object_or_404(Patient, pk=pk)
-    fraction =  get_object_or_404(Fraction, patient=pk)
-    return render(request, 'doseapp/patient_detail.html', {'patient': patient, 'fraction':fraction})
+    # fractions =  get_object_or_404(Fraction, patient=pk)
+    fractions = Fraction.objects.filter(patient=pk)
+    # fractions =  get(Fraction, patient=pk)
+    return render(request, 'doseapp/patient_detail.html', {'patient': patient, 'fractions':fractions})
 
 def fraction_new(request):
     if request.method == "POST":

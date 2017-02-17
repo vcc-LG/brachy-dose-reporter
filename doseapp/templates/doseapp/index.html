@@ -1,18 +1,6 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <title>Brachytherapy dose reporter</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-        <div class="page-header">
-                      <h1><a href="/">Brachytherapy dose reporter</a></h1>
-            <a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a>
-            <p>
-            </p>
-            <a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a>
-        </div>
-    </body>
-</html>
+{% extends 'doseapp/base.html' %} {% block content %}
+
+<a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a>
+<p>
+</p>
+<a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a> {% endblock %}

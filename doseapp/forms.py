@@ -14,5 +14,6 @@ class FractionForm(forms.ModelForm):
 
     class Meta:
         model = Fraction
-        fields = ('fraction_number',
+        fields = ('patient',
+        'fraction_number',
         'D90',)

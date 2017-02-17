@@ -1,22 +1,16 @@
-<head>
-    <title>Brachytherapy dose reporter</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-</head>
-{% block content %}
+{% extends 'doseapp/base.html' %} {% block content %}
+
 <div class="patient">
-    <h1>{{ patient.patient_id }}</h1>
-    <h4>{{ patient.first_name }}</h4>
-    <h4>{{ patient.last_name }}</h4>
+    <h4>Patient ID: {{ patient.patient_id }}</h4>
+    <h4>First name:{{ patient.first_name }}</h4>
+    <h4>Last name:{{ patient.last_name }}</h4>
 </div>
 <div class="fraction">
-    <h1>Fraction: {{ fraction.fraction_number }}</h1>
+    {% for fraction in fractions %}
+    <h4>Fraction: {{ fraction.fraction_number }}</h4>
     <h4>D90 = {{ fraction.D90 }}</h4>
+    {% endfor %}
 </div>
-{% endblock %}
-<a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a>
-<p>
 
-</p>
-<a href="{% url 'fraction_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>   Add a new fraction</a>
+
+<a href="{% url 'fraction_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>   Add a new fraction</a> {% endblock %}
