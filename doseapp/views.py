@@ -30,6 +30,8 @@ def patient_detail(request, pk):
     return render(request, 'doseapp/patient_detail.html', {'patient': patient, 'fractions':fractions})
 
 def fraction_new(request):
+    print(request.META.get('HTTP_REFERER'))
+    referrer_id = request.META.get('HTTP_REFERER').rsplit('/',2)[1]
     if request.method == "POST":
         form = FractionForm(request.POST)
         if form.is_valid():
@@ -38,4 +40,4 @@ def fraction_new(request):
             return redirect('patient_list')
     else:
         form = FractionForm()
-    return render(request, 'doseapp/fraction_new.html', {'form': form})
+    return render(request, 'doseapp/fraction_new.html', {'form': form, 'patient_id':referrer_id})
