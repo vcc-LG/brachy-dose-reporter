@@ -1,3 +1,10 @@
+<style>
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+</style>
 {% extends 'doseapp/base.html' %} {% block content %}
 
 <div class="patient">
@@ -6,10 +13,31 @@
     <h4>Last name:{{ patient.last_name }}</h4>
 </div>
 <div class="fraction">
-    {% for fraction in fractions %}
-    <h4>Fraction: {{ fraction.fraction_number }}</h4>
-    <h4>D90 = {{ fraction.D90 }}</h4>
-    <a class="btn btn-default" href="{% url 'fraction_edit' pk=patient.patient_id fraction_num=fraction.fraction_number %}"><span class="glyphicon glyphicon-pencil"></span>  Edit fraction</a> {% endfor %}
+    <table class="table table-hover">
+        <tr>
+            <th>Fraction</th>
+            {% for fraction in fractions %}
+            <td>{{ fraction.fraction_number }}</td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <th>D90</th>
+            {% for fraction in fractions %}
+            <td>{{ fraction.D90 }}</td>
+            {% endfor %}
+        </tr>
+
+        <tr>
+          <td>
+            
+          </td>
+          {% for fraction in fractions %}
+            <td><a class="btn btn-default" href="{% url 'fraction_edit' pk=patient.patient_id fraction_num=fraction.fraction_number %}"><span class="glyphicon glyphicon-pencil"></span>  Edit fraction</a> </td>
+            {% endfor %}
+
+        </tr>
+    </table>
 </div>
 
 
