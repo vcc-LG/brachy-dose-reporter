@@ -20,6 +20,12 @@ class PatientListJson(BaseDatatableView):
     columns = ['patient_id', 'first_name', 'last_name']
     order_columns = ['patient_id', 'first_name', 'last_name']
 
+    def render_column(self, row, column):
+        if column == 'patient_id':
+            return '<a href="%s">%s</a>' %('../'+row.patient_id,row.patient_id)
+        else:
+            return super(PatientListJson, self).render_column(row, column)
+
 def index(request):
     return render(request,'doseapp/index.html')
 
