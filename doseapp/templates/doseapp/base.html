@@ -24,8 +24,37 @@
     };
     </script>
     <style>
+    h1 {
+      font-size: 64px;
+    }
+    .top-menu {
+      font-size: 25px;
+    }
     h4 {
       font-style: italic;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111111;
     }
     </style>
 </head>
@@ -33,17 +62,15 @@
 <body>
     <div class="page-header">
         <h1><a href="/">Brachytherapy Dose Reporter</a></h1>
-        <h4 id="show_date"></h4>
-        <a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a>
-        <a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a>
-        <a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a>
+        <ul>
+  <li><a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a></li>
+  <li><a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a></li>
+  <li><a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a></li>
+</ul>
+
     </div>
     <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
                 {% block content %} {% endblock %}
-            </div>
-        </div>
     </div>
 </body>
 
