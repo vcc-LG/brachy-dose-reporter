@@ -1,7 +1,83 @@
-{% extends 'doseapp/base.html' %} {% block content %}
-<h1>List of patients in system</h1> {% for patient in patients %}
-<p>
-    <a href="{% url 'patient_detail' pk=patient.patient_id %}">{{ patient.patient_id }}</a>
-</p>
-{% endfor %}
+{% extends 'doseapp/base.html' %}
+{% load i18n staticfiles %}
+
+<h1>List of patients in system</h1> {% block extra_head %}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+
+    var USERS_LIST_JSON_URL = '{% url "patient_list" %}';
+    // translations for datatables
+
+    var dt_language = {
+        "emptyTable": "{% trans "
+        No data available in table " %}",
+        "info": "{% trans "
+        Showing _START_ to _END_ of _TOTAL_ entries " %}",
+        "infoEmpty": "{% trans "
+        Showing 0 to 0 of 0 entries " %}",
+        "infoFiltered": "{% trans " (filtered from _MAX_ total entries)
+        " %}",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "{% trans "
+        Show _MENU_ entries " %}",
+        "loadingRecords": "{% trans "
+        Loading..." %}",
+        "processing": "{% trans "
+        Processing..." %}",
+        "search": "{% trans "
+        Search: " %}",
+        "zeroRecords": "{% trans "
+        No matching records found " %}",
+        "paginate": {
+            "first": "{% trans "
+            First " %}",
+            "last": "{% trans "
+            Last " %}",
+            "next": "{% trans "
+            Next " %}",
+            "previous": "{% trans "
+            Previous " %}"
+        },
+        "aria": {
+            "sortAscending": "{% trans ": activate to sort column ascending " %}",
+            "sortDescending": "{% trans ": activate to sort column descending " %}"
+        }
+    }
+    $(document).ready(function() {
+        var dt_table = $('.datatable').dataTable({
+            language: dt_language, // global variable defined in html
+            order: [
+                [0, "desc"]
+            ],
+            lengthMenu: [
+                [25, 50, 100, 200],
+                [25, 50, 100, 200]
+            ],
+            columnDefs: [{
+                orderable: true,
+                searchable: true,
+                className: "center",
+                targets: [0, 1]
+            }],
+            searching: true,
+            processing: true,
+            serverSide: true,
+            stateSave: true,
+            ajax: USERS_LIST_JSON_URL
+        });
+    });
+
+</script>
+{% endblock %}
+{% block content %}
+<table class="datatable">
+    <thead>
+        <th>{% trans "Patient ID" %}</th>
+        <th>{% trans "First name" %}</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 {% endblock %}
