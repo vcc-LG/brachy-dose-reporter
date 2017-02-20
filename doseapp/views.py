@@ -4,16 +4,21 @@ from .forms import PatientForm, FractionForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import UpdateView
 from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
 # def patient_list(request):
 #     patients = Patient.objects.all()
 #     return render(request, 'doseapp/patient_list.html',{'patients':patients})
 
-# backward compatibility with Datatables 1.9.x
+
 class PatientList(TemplateView):
     template_name = 'doseapp/patient_list.html'
 
+class PatientListJson(BaseDatatableView):
+    model = Patient
+    columns = ['patient_id', 'first_name', 'last_name']
+    order_columns = ['patient_id', 'first_name', 'last_name']
 
 def index(request):
     return render(request,'doseapp/index.html')

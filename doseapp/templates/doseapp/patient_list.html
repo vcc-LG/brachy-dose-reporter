@@ -1,50 +1,14 @@
-{% extends 'doseapp/base.html' %}
 {% load i18n staticfiles %}
 
-<h1>List of patients in system</h1> {% block extra_head %}
+<h1>List of patients in system</h1>
+{% block extra_head %}
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
-
-    var USERS_LIST_JSON_URL = '{% url "patient_list" %}';
-    // translations for datatables
-
-    var dt_language = {
-        "emptyTable": "{% trans "
-        No data available in table " %}",
-        "info": "{% trans "
-        Showing _START_ to _END_ of _TOTAL_ entries " %}",
-        "infoEmpty": "{% trans "
-        Showing 0 to 0 of 0 entries " %}",
-        "infoFiltered": "{% trans " (filtered from _MAX_ total entries)
-        " %}",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "{% trans "
-        Show _MENU_ entries " %}",
-        "loadingRecords": "{% trans "
-        Loading..." %}",
-        "processing": "{% trans "
-        Processing..." %}",
-        "search": "{% trans "
-        Search: " %}",
-        "zeroRecords": "{% trans "
-        No matching records found " %}",
-        "paginate": {
-            "first": "{% trans "
-            First " %}",
-            "last": "{% trans "
-            Last " %}",
-            "next": "{% trans "
-            Next " %}",
-            "previous": "{% trans "
-            Previous " %}"
-        },
-        "aria": {
-            "sortAscending": "{% trans ": activate to sort column ascending " %}",
-            "sortDescending": "{% trans ": activate to sort column descending " %}"
-        }
-    }
     $(document).ready(function() {
         var dt_table = $('.datatable').dataTable({
             language: dt_language, // global variable defined in html
@@ -65,17 +29,43 @@
             processing: true,
             serverSide: true,
             stateSave: true,
-            ajax: USERS_LIST_JSON_URL
+            ajax: '{% url "patient_list_json" %}'
         });
     });
 
+    var USERS_LIST_JSON_URL = '{% url "patient_list_json" %}';
+
+    var dt_language = {
+        "emptyTable": "{% trans " No data available in table " %}",
+        "info": "{% trans " Showing _START_ to _END_ of _TOTAL_ entries " %}",
+        "infoEmpty": "{% trans " Showing 0 to 0 of 0 entries " %}",
+        "infoFiltered": "{% trans " (filtered from _MAX_ total entries) " %}",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "{% trans " Show _MENU_ entries " %}",
+        "loadingRecords": "{% trans " Loading..." %}",
+        "processing": "{% trans " Processing..." %}",
+        "search": "{% trans " Search: " %}",
+        "zeroRecords": "{% trans " No matching records found " %}",
+        "paginate": {
+            "first": "{% trans " First " %}",
+            "last": "{% trans " Last " %}",
+            "next": "{% trans " Next " %}",
+            "previous": "{% trans " Previous " %}"
+        },
+        "aria": {
+            "sortAscending": "{% trans ": activate to sort column ascending " %}",
+            "sortDescending": "{% trans ": activate to sort column descending " %}"
+        }
+    }
 </script>
-{% endblock %}
-{% block content %}
+
+{% endblock %} {% block content %}
 <table class="datatable">
     <thead>
         <th>{% trans "Patient ID" %}</th>
         <th>{% trans "First name" %}</th>
+        <th>{% trans "Last name" %}</th>
     </thead>
     <tbody>
     </tbody>
