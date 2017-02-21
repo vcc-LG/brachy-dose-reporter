@@ -1,7 +1,20 @@
 {% extends 'doseapp/base.html' %} {% block content %}
 <h1>New fraction for {{ patient_id }}</h1>
+
+{% if messages %}
+  <ul class="messages" style="background-color:#e68885">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li><br />
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<br />
 <form method="POST" class="post-form">{% csrf_token %} {{ form.as_p }}
   <input type="hidden" name="patid" value='"{{patient_id}}"' />
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
+
+<a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-step-backward"></span>    Back</a>
+
 {% endblock %}

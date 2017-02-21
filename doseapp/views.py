@@ -8,7 +8,7 @@ from .forms import PatientForm, FractionForm
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
-
+from django.contrib import messages
 
 class PatientList(TemplateView):
     """
@@ -73,8 +73,14 @@ def fraction_new(request):
     referrer_id = request.META.get('HTTP_REFERER').rsplit('/', 2)[1]
     if request.method == "POST":
         form = FractionForm(request.POST)
+        fraction_number_request = request.POST.get("fraction_number")
         if form.is_valid():
             post = form.save(commit=False)
+            if Fraction.objects.filter(fraction_number=fraction_number_request).exists():
+                print('here')
+                messages.warning(request, 'Warning: Fraction already exists')
+                messages.warning(request, 'Please change fraction number or edit existing fraction')
+                return render(request, 'doseapp/fraction_new.html', {'form': form, 'patient_id':request.POST.get("patid").strip("\"")})
             post.save()
             return redirect('patient_detail', pk=post.patient_id)
     else:
