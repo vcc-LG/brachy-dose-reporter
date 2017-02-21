@@ -6,44 +6,47 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.js"
-      integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <style>
-    h1 {
-      font-size: 64px;
-      padding-left: 11px;
-    }
-    .top-menu {
-      font-size: 25px;
-    }
-    h4 {
-      font-style: italic;
-    }
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333333;
-    }
+        h1 {
+            font-size: 64px;
+            padding-left: 11px;
+        }
 
-    li {
-        float: left;
-    }
+        .top-menu {
+            font-size: 25px;
+        }
 
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 16px;
-        text-decoration: none;
-    }
+        h4 {
+            font-style: italic;
+        }
 
-    li a:hover {
-        background-color: #111111;
-    }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+
+
+        li {
+            float: left;
+        }
+
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+
+        li a:hover {
+            background-color: #111111;
+        }
     </style>
 </head>
 
@@ -51,14 +54,14 @@
     <div class="page-header">
         <h1><a href="/">Brachytherapy Dose Reporter</a></h1>
         <ul>
-  <li><a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a></li>
-  <li><a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a></li>
-  <li><a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a></li>
-</ul>
+            <li><a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a></li>
+            <li><a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a></li>
+            <li><a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a></li>
+        </ul>
 
     </div>
     <div class="content container">
-                {% block content %} {% endblock %}
+        {% block content %} {% endblock %}
     </div>
 </body>
 
