@@ -25,7 +25,7 @@ SECRET_KEY = '&jdc!vcu)xpw4i17)1-5_*27^+)ali2de3mj6%4-w#5xr4*2z*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['desolate-wildwood-25607.herokuapp.com']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'doseapp',
-    'django_datatables_view',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,8 +120,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
