@@ -22,7 +22,7 @@ class PatientListJson(BaseDatatableView):
 
     def render_column(self, row, column):
         if column == 'patient_id':
-            return '<a href="%s">%s</a>' %('../'+row.patient_id,row.patient_id)
+            return '<a href="%s">%s</a>' %('../patient/'+row.patient_id,row.patient_id)
         else:
             return super(PatientListJson, self).render_column(row, column)
 
