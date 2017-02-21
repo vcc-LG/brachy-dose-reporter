@@ -3,11 +3,28 @@ from .models import Patient, Fraction
 from .forms import PatientForm, FractionForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import UpdateView
+from django.views.generic import TemplateView
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
-# Create your views here.
-def patient_list(request):
-    patients = Patient.objects.all()
-    return render(request, 'doseapp/patient_list.html',{'patients':patients})
+
+# def patient_list(request):
+#     patients = Patient.objects.all()
+#     return render(request, 'doseapp/patient_list.html',{'patients':patients})
+
+
+class PatientList(TemplateView):
+    template_name = 'doseapp/patient_list.html'
+
+class PatientListJson(BaseDatatableView):
+    model = Patient
+    columns = ['patient_id', 'first_name', 'last_name']
+    order_columns = ['patient_id', 'first_name', 'last_name']
+
+    def render_column(self, row, column):
+        if column == 'patient_id':
+            return '<a href="%s">%s</a>' %('../'+row.patient_id,row.patient_id)
+        else:
+            return super(PatientListJson, self).render_column(row, column)
 
 def index(request):
     return render(request,'doseapp/index.html')

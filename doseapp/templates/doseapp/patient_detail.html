@@ -30,7 +30,7 @@
 
         <tr>
           <td>
-            
+
           </td>
           {% for fraction in fractions %}
             <td><a class="btn btn-default" href="{% url 'fraction_edit' pk=patient.patient_id fraction_num=fraction.fraction_number %}"><span class="glyphicon glyphicon-pencil"></span>  Edit fraction</a> </td>
@@ -45,4 +45,8 @@
 <p>
 
 </p>
-<a class="btn btn-default" href="{% url 'patient_edit' pk=patient.patient_id %}"><span class="glyphicon glyphicon-pencil"></span>  Edit patient</a> {% endblock %}
+
+<a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-step-backward"></span>    Back</a>
+<a class="btn btn-default" href="{% url 'patient_edit' pk=patient.patient_id %}"><span class="glyphicon glyphicon-pencil"></span>  Edit patient</a>
+
+{% endblock %}

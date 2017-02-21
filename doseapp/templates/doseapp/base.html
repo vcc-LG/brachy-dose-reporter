@@ -6,19 +6,71 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;//January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10) {
+          dd='0'+dd
+      }
+      if(mm<10) {
+          mm='0'+mm
+      }
+      today_pretty = dd+'/'+mm+'/'+yyyy;
+      document.getElementById("show_date").innerHTML = today_pretty;
+    };
+    </script>
+    <style>
+    h1 {
+      font-size: 64px;
+    }
+    .top-menu {
+      font-size: 25px;
+    }
+    h4 {
+      font-style: italic;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111111;
+    }
+    </style>
 </head>
 
 <body>
     <div class="page-header">
         <h1><a href="/">Brachytherapy Dose Reporter</a></h1>
-        <a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a>
+        <ul>
+  <li><a href="{% url 'index' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span>   Home</a></li>
+  <li><a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-eye-open"></span>   View patients</a></li>
+  <li><a href="{% url 'patient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span>   Add a patient</a></li>
+</ul>
+
     </div>
     <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
                 {% block content %} {% endblock %}
-            </div>
-        </div>
     </div>
 </body>
 
