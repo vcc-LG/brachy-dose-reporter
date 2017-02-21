@@ -8,3 +8,7 @@ Installation
 pip install -r requirements.txt
 python manage.py runserver
 ```
+
+Hosted example
+==============
+On Heroku [here](https://arcane-beach-47386.herokuapp.com/). 
