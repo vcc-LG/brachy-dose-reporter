@@ -1,19 +1,29 @@
-<style>
-.table td.fit,
-.table th.fit {
-    white-space: nowrap;
-    width: 1%;
-}
-</style>
+
 {% extends 'doseapp/base.html' %} {% block content %}
 
-<div class="patient">
-    <h4>Patient ID: {{ patient.patient_id }}</h4>
-    <h4>First name:{{ patient.first_name }}</h4>
-    <h4>Last name:{{ patient.last_name }}</h4>
-</div>
+  <table class="table table-hover table-bordered" width="100">
+    <col width="130">
+<col width="80">
+    <tr>
+<th>Patient ID: </th>
+<td>{{ patient.patient_id }}</td>
+
+    </tr>
+
+    <tr>
+<th>First name: </th>
+<td>{{ patient.first_name }}</td>
+    </tr>
+
+    <tr>
+<th>Last name: </th>
+<td>{{ patient.last_name }}</td>
+    </tr>
+
+  </table>
+
 <div class="fraction">
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered">
         <tr>
             <th>Fraction</th>
             {% for fraction in fractions %}
