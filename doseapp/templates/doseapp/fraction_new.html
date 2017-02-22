@@ -15,6 +15,7 @@
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 
-<a href="{% url 'patient_list' %}" class="top-menu"><span class="glyphicon glyphicon-step-backward"></span>    Back</a>
+<a href="{% url 'patient_detail' patient_id %}" class="top-menu"><span class="glyphicon glyphicon-step-backward"></span>    Back</a> 
+
 
 {% endblock %}

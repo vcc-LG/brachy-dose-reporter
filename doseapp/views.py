@@ -77,7 +77,6 @@ def fraction_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             if Fraction.objects.filter(fraction_number=fraction_number_request).exists():
-                print('here')
                 messages.warning(request, 'Warning: Fraction already exists')
                 messages.warning(request, 'Please change fraction number or edit existing fraction')
                 return render(request, 'doseapp/fraction_new.html', {'form': form, 'patient_id':request.POST.get("patid").strip("\"")})
