@@ -1,6 +1,12 @@
 {% extends 'doseapp/base.html' %} {% block content %}
 <h1>New patient</h1>
+
 <form method="POST" class="post-form">{% csrf_token %} {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
+
+<h3>or</h3>
+
+<a href="{% url 'patient_import' %}" class="top-menu"><span class="glyphicon glyphicon-disk-import"></span>Import from OMP</a>
+
 {% endblock %}

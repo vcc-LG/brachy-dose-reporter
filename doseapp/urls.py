@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^patient/new/$', views.patient_new, name='patient_new'),
     url(r'^patient/new/fraction/$', views.fraction_new, name='fraction_new'),
     url(r'^patient_list/$',  PatientList.as_view(), name="patient_list"),
+    url(r'^patient_import/$',  views.patient_import, name="patient_import"),
     url(r'^patient_data/$',  PatientListJson.as_view(), name="patient_list_json"),
     url(r'^patient/(?P<pk>V\d+)/$', views.patient_detail, name='patient_detail'),
     url(r'^patient/(?P<pk>V\d+)/edit/$', views.patient_edit, name='patient_edit'),

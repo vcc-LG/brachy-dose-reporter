@@ -4,12 +4,14 @@ View module for brachytherapy dose reporting app
 
 from django.shortcuts import render
 from .models import Patient, Fraction
-from .forms import PatientForm, FractionForm
+from .forms import PatientForm, FractionForm, PatientImportForm
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.contrib import messages
 import json
+from hdrpackage.omp_connect import *
+
 
 class PatientList(TemplateView):
     """
@@ -57,6 +59,23 @@ def patient_new(request):
     else:
         form = PatientForm()
     return render(request, 'doseapp/patient_new.html', {'form': form})
+
+
+def patient_import(request):
+    if request.method == "POST":
+        form = PatientImportForm(request.POST)
+        patient_id_to_lookup = request.POST.get("patient_id_to_lookup")
+        # print(patient_id_to_lookup)
+        if form.is_valid():
+            print('here')
+            # post = form.save(commit=False)
+            # post.save()
+            return render(request,'doseapp/patient_import.html', {'form': form, 'patient_id':patient_id_to_lookup})
+    else:
+        form = PatientImportForm()
+    return render(request, 'doseapp/patient_import.html', {'form': form})
+
+
 
 def patient_detail(request, pk):
     """

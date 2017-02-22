@@ -9,6 +9,11 @@ class PatientForm(forms.ModelForm):
         'first_name',
         'last_name',)
 
+class PatientImportForm(forms.Form):
+    patient_id_to_lookup = forms.CharField(label=("Patient ID"),
+        max_length=8,
+        widget=forms.TextInput,
+    )
 
 class FractionForm(forms.ModelForm):
     class Meta:
