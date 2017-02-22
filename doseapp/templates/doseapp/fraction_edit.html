@@ -1,8 +1,27 @@
 {% extends 'doseapp/base.html' %} {% block content %}
-
+<script>
+function confirmDelete(e) {
+  if (confirm("Are you sure you want to delete this fraction?")) {
+    return true;
+  } else {
+    e.preventDefault();
+    return false;
+  }
+};
+</script>
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update" />
+    <input type="submit" name="Update" value="Update" />
+
+    <a href="{% url 'patient_detail' patient_id %}" class="top-menu"><span class="glyphicon glyphicon-step-backward"></span>    Back</a>
+<p>
+
+</p>
+
+
+<button name="Delete" type="submit" value="delete" onclick="confirmDelete(event)">Delete fraction</button>
+
+
 </form>
 
 {% endblock %}

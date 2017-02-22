@@ -106,7 +106,13 @@ def fraction_edit(request, pk, fraction_num):
     Edit a fraction
     """
     fraction = get_object_or_404(Fraction, patient=pk, fraction_number=fraction_num)
-    if request.method == "POST":
+    referrer_id = request.META.get('HTTP_REFERER').rsplit('/', 2)[1]
+    # if request.method == "POST":
+    if request.POST.get('delete'):
+        Fraction.objects.filter(patient=pk, fraction_number=fraction_num).delete()
+        print('here')
+        return redirect('patient_detail', pk=pk)
+    if request.POST.get('Update'):
         form = FractionForm(request.POST, instance=fraction)
         if form.is_valid():
             post = form.save(commit=False)
@@ -114,4 +120,4 @@ def fraction_edit(request, pk, fraction_num):
             return redirect('patient_detail', pk=pk)
     else:
         form = FractionForm(instance=fraction)
-    return render(request, 'doseapp/fraction_edit.html', {'form': form})
+    return render(request, 'doseapp/fraction_edit.html', {'form': form, 'patient_id':referrer_id})
