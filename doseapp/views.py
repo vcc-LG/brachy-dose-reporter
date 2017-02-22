@@ -9,6 +9,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.contrib import messages
+import json
 
 class PatientList(TemplateView):
     """
@@ -63,8 +64,14 @@ def patient_detail(request, pk):
     """
     patient = get_object_or_404(Patient, pk=pk)
     fractions = Fraction.objects.filter(patient=pk)
+    url = 'doseapp/static/doseapp/tolerances.json'
+    json_data = open(url)# False
+    tolerances = json.load(json_data)
+    # print(data1)
     return render(request, 'doseapp/patient_detail.html',
-                  {'patient': patient, 'fractions':fractions})
+                  {'patient': patient,
+                   'fractions':fractions,
+                   'tolerances':tolerances})
 
 def fraction_new(request):
     """

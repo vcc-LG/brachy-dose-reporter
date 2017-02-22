@@ -1,5 +1,7 @@
 
 {% extends 'doseapp/base.html' %} {% block content %}
+
+
   <table class="table table-hover table-bordered" width="100">
     <col width="130">
 <col width="80">
@@ -33,7 +35,11 @@
         <tr>
             <th>D90</th>
             {% for fraction in fractions %}
-            <td>{{ fraction.D90 }}</td>
+              {% if fraction.D90 > tolerances.D90 %}
+              <td BGCOLOR="#e87483">{{ fraction.D90 }}</td>
+              {% else %}
+                <td>{{ fraction.D90 }}</td>
+              {% endif %}
             {% endfor %}
         </tr>
 
