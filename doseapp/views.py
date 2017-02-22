@@ -109,8 +109,8 @@ def fraction_edit(request, pk, fraction_num):
     referrer_id = request.META.get('HTTP_REFERER').rsplit('/', 2)[1]
     # if request.method == "POST":
     if request.POST.get('delete'):
-        Fraction.objects.filter(patient=pk, fraction_number=fraction_num).delete()
         print('here')
+        Fraction.objects.filter(patient=pk, fraction_number=fraction_num).delete()
         return redirect('patient_detail', pk=pk)
     if request.POST.get('Update'):
         form = FractionForm(request.POST, instance=fraction)
